@@ -35,18 +35,23 @@ public class Game {
             screen.refresh();
     }
 
+    private void moveHero(Position position){
+        hero.setPosition(position);
+    }
+
+
     private void processKey(KeyStroke key) throws IOException {
         if (key.getKeyType() == KeyType.ArrowUp) {
-            hero.setY(hero.getY() - 1);
+            moveHero(hero.moveUp());
         }
         if (key.getKeyType() == KeyType.ArrowDown) {
-            hero.setY(hero.getY() + 1);
+            moveHero(hero.moveDown());
         }
         if (key.getKeyType() == KeyType.ArrowLeft) {
-            hero.setX(hero.getX() - 1);
+            moveHero(hero.moveLeft());
         }
         if (key.getKeyType() == KeyType.ArrowRight) {
-            hero.setX(hero.getX() + 1);
+            moveHero(hero.moveRight());
         }
         if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
             screen.close();
