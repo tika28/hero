@@ -2,14 +2,13 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Arena {
 
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private Hero hero;
     private final List<Wall> walls;
 
@@ -20,11 +19,7 @@ public class Arena {
         hero = new Hero(10, 10);
     }
 
-    public void setPosition(Position position){
-        hero.setPosition(position);
-    }
-
-    public void draw(TextGraphics graphics) throws IOException {
+    public void draw(TextGraphics graphics){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         for (Wall wall : walls)
@@ -43,10 +38,8 @@ public class Arena {
                 return false;
             }
         }
-        if (position.getX() > 0 && position.getX() < width &&
-                position.getY() > 0 && position.getY() < height){
-            return true;
-        } else return false;
+       return position.getX() > 0 && position.getX() < width &&
+               position.getY() > 0 && position.getY() < height;
    }
 
     public void moveHero(Position position) {
